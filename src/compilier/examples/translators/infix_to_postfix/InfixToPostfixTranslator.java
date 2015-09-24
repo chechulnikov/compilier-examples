@@ -1,4 +1,4 @@
-package compilier.examples;
+package compilier.examples.translators.infix_to_postfix;
 
 import java.io.IOException;
 
