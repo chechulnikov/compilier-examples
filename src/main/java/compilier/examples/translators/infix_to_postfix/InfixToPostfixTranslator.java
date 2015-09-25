@@ -1,16 +1,22 @@
 package compilier.examples.translators.infix_to_postfix;
 
+import com.google.inject.Inject;
+import compilier.examples.interfaces.IParser;
+import compilier.examples.interfaces.ITranslator;
+
 import java.io.IOException;
 
-public class InfixToPostfixTranslator {
-    private Parser parser;
+public class InfixToPostfixTranslator implements ITranslator {
+    private IParser parser;
 
-    public InfixToPostfixTranslator() throws IOException {
-        parser = new Parser();
+    @Inject
+    public InfixToPostfixTranslator(IParser parser) throws IOException {
+        this.parser = parser;
     }
 
-    public void Translate() throws IOException {
-        parser.expr();
+    @Override
+    public void translate() throws IOException {
+        parser.parse();
         System.out.write('\n');
     }
 }

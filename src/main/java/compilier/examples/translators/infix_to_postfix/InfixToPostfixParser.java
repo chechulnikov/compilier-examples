@@ -1,16 +1,19 @@
 package compilier.examples.translators.infix_to_postfix;
 
+import compilier.examples.interfaces.IParser;
+
 import java.io.IOException;
 import static java.lang.System.*;
 
-public class Parser{
-    static int lookahead;
+public class InfixToPostfixParser implements IParser {
+    private int lookahead;
 
-    public Parser() throws IOException {
+    public InfixToPostfixParser() throws IOException {
         lookahead = in.read();
     }
 
-    public void expr() throws IOException {
+    @Override
+    public void parse() throws IOException {
         term();
         while (true) {
             if (lookahead == '+') {
@@ -26,7 +29,7 @@ public class Parser{
     }
 
     private void term() throws IOException {
-        char lookaheadChar = (char) Parser.lookahead;
+        char lookaheadChar = (char) lookahead;
         if (Character.isDigit(lookaheadChar)) {
             out.write(lookaheadChar);
             match(lookahead);
